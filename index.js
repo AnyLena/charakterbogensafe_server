@@ -1,20 +1,23 @@
 import "dotenv/config";
 import express from "express";
 import { connectDatabase } from "./data/client.js";
-import turbofateRouter from "./routes/turbofate.js";
 import cors from 'cors'
+import turbofateRouter from "./routes/turbofate.js";
+import playerRouter from "./routes/player.js";
 
 const app = express();
 const port = 8000;
 
 app.use(cors())
 app.use(express.json());
+app.use("/player", playerRouter)
 app.use("/turbo-fate", turbofateRouter);
+
 
 const startServer = async () => {
   await connectDatabase();
   app.listen(port, () => {
-    console.log("App listenin on port " + port);
+    console.log("App listening on port " + port);
   });
 };
 

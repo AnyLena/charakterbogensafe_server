@@ -2,9 +2,6 @@ import Turbofate from "../models/Turbofate.js";
 
 export const getTurbofate = async (req, res) => {
   const { id } = req.params;
-  // const id = "65d295854345e33a8cd7badb";
-  // const id = "65d2850ae9a06fedb84a6d28";
-
   try {
     const data = await Turbofate.findById(id);
     res.status(200).json(data);
@@ -14,8 +11,9 @@ export const getTurbofate = async (req, res) => {
 };
 
 export const getTurbofateAll = async (req, res) => {
+  const {id} = req.params;
   try {
-    const data = await Turbofate.find();
+    const data = await Turbofate.find({player: id});
     res.status(200).json(data);
   } catch (error) {
     res.status(500).send(error.message);
@@ -23,6 +21,7 @@ export const getTurbofateAll = async (req, res) => {
 };
 
 export const postTurbofate = async (req, res) => {
+  const {id} = req.body
   try {
     const data = await Turbofate.create({
       allgemeines: { name: 'Neuer Charakter', beschreibung: 'Bitte eintragen', erholung: 0 },
@@ -38,6 +37,7 @@ export const postTurbofate = async (req, res) => {
       stunts: [{stuntName: "Stunt", stuntBeschreibung: "Bitte eintragen"},{stuntName: "Stunt", stuntBeschreibung: "Bitte eintragen"}],
       stress: { eins: false, zwei: false, drei: false },
       konsequenzen: { leicht: '', mittel: '', schwer:'' },
+      player: id
     });
     res.status(201).json(data);
   } catch (error) {

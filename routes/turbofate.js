@@ -3,7 +3,7 @@ import { postTurbofate, getTurbofate, getTurbofateAll, updateTurbofate } from ".
 
 const turbofateRouter = express.Router()
 
-turbofateRouter.get("/", getTurbofateAll)
+turbofateRouter.get("/all/:id", getTurbofateAll)
 turbofateRouter.get("/:id", getTurbofate)
 turbofateRouter.post("/", postTurbofate)
 turbofateRouter.put("/", updateTurbofate)

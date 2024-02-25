@@ -102,7 +102,7 @@ const TurboFateSchema = new mongoose.Schema({
   player: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Player',
-    // required: true
+    required: true
   } 
 });
 
