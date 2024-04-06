@@ -1,23 +1,23 @@
 import Slayers from "../models/Slayers.js";
 
 export const getSlayers = async (req, res) => {
-  //   const { id } = req.params;
-  //   try {
-  //     const data = await Slayers.findById(id);
-  //     res.status(200).json(data);
-  //   } catch (error) {
-  //     res.status(500).send(error.message);
-  //   }
+    const { id } = req.params;
+    try {
+      const data = await Slayers.findById(id);
+      res.status(200).json(data);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
 };
 
 export const getSlayersAll = async (req, res) => {
-  //   const {id} = req.params;
-  //   try {
-  //     const data = await Slayers.find({player: id});
-  //     res.status(200).json(data);
-  //   } catch (error) {
-  //     res.status(500).send(error.message);
-  //   }
+    const {id} = req.params;
+    try {
+      const data = await Slayers.find({player: id});
+      res.status(200).json(data);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
 };
 
 export const postSlayers = async (req, res) => {
@@ -33,31 +33,25 @@ export const postSlayers = async (req, res) => {
         klassenbonus: "Bitte eintragen",
         volksfaehigkeiten: "Bitte eintragen",
       },
-    
-     
       talente: [
         {
-          talentName: "Talent1",
-          talentRang: "Rang1",
-          talentEffekt: "Effekt1",
+          talentName: "...",
+          talentRang: 0,
+          talentEffekt: "...",
         },
       ],
       magie: [
         {
-          magieName: "Magie1",
-          magieKb: "Kb1",
-          magieAdWd: "AdWd1",
-          magieDist: "Dist1",
-          magieAkz: "Akz1",
-          magieEffekt: "Effekt1",
+          magieName: "...",
+          magieKb: "...",
+          magieAdWd: "...",
+          magieDist: "...",
+          magieAkz: "...",
+          magieEffekt: "...",
         },
       ],
-      sonstiges: [
-        {
-          sonstigesBeschreibung: "Beschreibung1",
-        },
-      ],
-      player: id
+      player: id,
+      system: "gammaslayers"
     });
     res.status(201).json(data);
   } catch (error) {

@@ -256,7 +256,7 @@ const SlayersSchema = new mongoose.Schema({
       },
       talentRang: {
         required: true,
-        type: String,
+        type: Number,
       },
       talentEffekt: {
         required: true,
@@ -305,6 +305,11 @@ const SlayersSchema = new mongoose.Schema({
       },
     },
   ],
+  system: {
+    type: String,
+    enum: ['gammaslayers', 'dungeonslayers'],
+    required: true
+  },
   player: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Player",

@@ -1,10 +1,10 @@
 import express from "express"
-import { postSlayers } from "../controller/slayers.js";
+import { getSlayers, getSlayersAll, postSlayers } from "../controller/slayers.js";
 
 const slayersRouter = express.Router()
 
-slayersRouter.get("/all/:id",)
-slayersRouter.get("/:id",)
+slayersRouter.get("/all/:id", getSlayersAll)
+slayersRouter.get("/:id", getSlayers)
 slayersRouter.post("/", postSlayers)
 slayersRouter.put("/", )
 
