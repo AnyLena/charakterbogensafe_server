@@ -216,7 +216,7 @@ const SlayersSchema = new mongoose.Schema({
         type: Number,
       },
       waffeMun: {
-        type: Number,
+        type: String,
       },
       waffeModi: {
         type: String,
@@ -255,6 +255,10 @@ const SlayersSchema = new mongoose.Schema({
         type: String,
       },
       talentRang: {
+        required: true,
+        type: Number,
+      },
+      talentRangMax: {
         required: true,
         type: Number,
       },

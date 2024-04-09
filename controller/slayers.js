@@ -1,23 +1,23 @@
 import Slayers from "../models/Slayers.js";
 
 export const getSlayers = async (req, res) => {
-    const { id } = req.params;
-    try {
-      const data = await Slayers.findById(id);
-      res.status(200).json(data);
-    } catch (error) {
-      res.status(500).send(error.message);
-    }
+  const { id } = req.params;
+  try {
+    const data = await Slayers.findById(id);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
 };
 
 export const getSlayersAll = async (req, res) => {
-    const {id} = req.params;
-    try {
-      const data = await Slayers.find({player: id});
-      res.status(200).json(data);
-    } catch (error) {
-      res.status(500).send(error.message);
-    }
+  const { id } = req.params;
+  try {
+    const data = await Slayers.find({ player: id });
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
 };
 
 export const postSlayers = async (req, res) => {
@@ -51,7 +51,7 @@ export const postSlayers = async (req, res) => {
         },
       ],
       player: id,
-      system: "gammaslayers"
+      system: "gammaslayers",
     });
     res.status(201).json(data);
   } catch (error) {
@@ -109,4 +109,178 @@ export const updateSlayers = async (req, res) => {
   //   } catch (error) {
   //     res.status(500).send(`Internal server error (POST): ${error.message}`);
   //   }
+};
+
+export const addWaffe = async (req, res) => {
+  const { id } = req.body;
+  try {
+    const data = await Slayers.findByIdAndUpdate(
+      id,
+      {
+        $push: {
+          waffen: {
+            waffeName: "–",
+            waffeWb: 0,
+            waffeRw: 0,
+            waffeMw: 0,
+            waffeMun: "–",
+            waffeModi: "–",
+            waffeBes: "–",
+          },
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+export const deleteWaffe = async (req, res) => {
+  const { id, itemId } = req.body;
+  try {
+    const data = await Slayers.findByIdAndUpdate(
+      id,
+      {
+        $pull: {
+          waffen: {
+            _id: itemId,
+          },
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+export const addTalent = async (req, res) => {
+  const { id } = req.body;
+  try {
+    const data = await Slayers.findByIdAndUpdate(
+      id,
+      {
+        $push: {
+          talente: {
+            talentName: "–",
+            talentRang: 1,
+            talentRangMax: 3,
+            talentEffekt: "–",
+          },
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+export const deleteTalent = async (req, res) => {
+  const { id, itemId } = req.body;
+  try {
+    const data = await Slayers.findByIdAndUpdate(
+      id,
+      {
+        $pull: {
+          talente: {
+            _id: itemId,
+          },
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+export const addMagie = async (req, res) => {
+  const { id } = req.body;
+  try {
+    const data = await Slayers.findByIdAndUpdate(
+      id,
+      {
+        $push: {
+          magie: {
+            magieName: "–",
+            magieKb: "–",
+            magieAdWd: "–",
+            magieDist: "–",
+            magieAkz: "–",
+            magieEffekt: "–"
+          },
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+export const deleteMagie = async (req, res) => {
+  const { id, itemId } = req.body;
+  try {
+    const data = await Slayers.findByIdAndUpdate(
+      id,
+      {
+        $pull: {
+          magie: {
+            _id: itemId,
+          },
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+export const addAusruestung = async (req, res) => {
+  const { id } = req.body;
+  try {
+    const data = await Slayers.findByIdAndUpdate(
+      id,
+      {
+        $push: {
+          ausruestung: {
+            ausruestungName: "–",
+          },
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+export const deleteAusruestung = async (req, res) => {
+  const { id, itemId } = req.body;
+  try {
+    const data = await Slayers.findByIdAndUpdate(
+      id,
+      {
+        $pull: {
+          ausruestung: {
+            _id: itemId,
+          },
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
 };
