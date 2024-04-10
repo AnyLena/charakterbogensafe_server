@@ -60,55 +60,79 @@ export const postSlayers = async (req, res) => {
 };
 
 export const updateSlayers = async (req, res) => {
-  //   const id = req.body._id;
-  //   try {
-  //     const {
-  //       allgemeines: { name, beschreibung, erholung },
-  //       aspekt: { konzept, motivation, persoenlich, geteilt, zusatz },
-  //       methoden: {
-  //         flink,
-  //         kraftvoll,
-  //         scharfsinnig,
-  //         sorgfaeltig,
-  //         tollkuehn,
-  //         tueckisch,
-  //       },
-  //       stunts,
-  //       stress: { eins, zwei, drei },
-  //       konsequenzen: { leicht, mittel, schwer },
-  //     } = req.body;
-  //     let update = {};
-  //     if (name !== undefined) update["allgemeines.name"] = name;
-  //     if (beschreibung !== undefined)
-  //       update["allgemeines.beschreibung"] = beschreibung;
-  //     if (erholung !== undefined)
-  //       update["allgemeines.erholung"] = erholung;
-  //     if (konzept !== undefined) update["aspekt.konzept"] = konzept;
-  //     if (motivation !== undefined) update["aspekt.motivation"] = motivation;
-  //     if (persoenlich !== undefined) update["aspekt.persoenlich"] = persoenlich;
-  //     if (geteilt !== undefined) update["aspekt.geteilt"] = geteilt;
-  //     if (zusatz !== undefined) update["aspekt.zusatz"] = zusatz;
-  //     if (flink !== undefined) update["methoden.flink"] = flink;
-  //     if (kraftvoll !== undefined) update["methoden.kraftvoll"] = kraftvoll;
-  //     if (scharfsinnig !== undefined)
-  //       update["methoden.scharfsinnig"] = scharfsinnig;
-  //     if (sorgfaeltig !== undefined) update["methoden.sorgfaeltig"] = sorgfaeltig;
-  //     if (tollkuehn !== undefined) update["methoden.tollkuehn"] = tollkuehn;
-  //     if (tueckisch !== undefined) update["methoden.tueckisch"] = tueckisch;
-  //     if (stunts !== undefined) update["stunts"] = stunts;
-  //     if (eins !== undefined) update["stress.eins"] = eins;
-  //     if (zwei !== undefined) update["stress.zwei"] = zwei;
-  //     if (drei !== undefined) update["stress.drei"] = drei;
-  //     if (leicht !== undefined) update["konsequenzen.leicht"] = leicht;
-  //     if (mittel !== undefined) update["konsequenzen.mittel"] = mittel;
-  //     if (schwer !== undefined) update["konsequenzen.schwer"] = schwer;
-  //     const data = await Slayers.findByIdAndUpdate(id, update, { new: true });
-  //     // res.status(201).send("Data sucessfully updated.");
-  //     // res.status(200).send(data);
-  //     res.sendStatus(200);
-  //   } catch (error) {
-  //     res.status(500).send(`Internal server error (POST): ${error.message}`);
-  //   }
+  const id = req.body._id;
+  try {
+    const {
+      allgemeines: {
+        name,
+        beschreibung,
+        volk,
+        klasse,
+        volksbonus,
+        klassenbonus,
+        volksfaehigkeiten
+      },
+      attribute: { koerper, agilitaet, geist },
+      eigenschaften: { staerke, haerte, bewegung, geschick, verstand, aura },
+      werte: { lp, tp, ep, tl, stufe, schaden },
+      werteGamma: { degeneration, cyberpunkte, mutation },
+      ruestung,
+      waffen,
+      ausruestung,
+      geld: { gold, silber, kupfer },
+      talente,
+      magie,
+      sonstiges,
+    } = req.body;
+
+    let update = {};
+    if (name !== undefined) update["allgemeines.name"] = name;
+    if (beschreibung !== undefined) update["allgemeines.beschreibung"] = beschreibung;
+    if (volk !== undefined) update["allgemeines.volk"] = volk;
+    if (klasse !== undefined) update["allgemeines.klasse"] = klasse;
+    if (volksbonus !== undefined) update["allgemeines.volksbonus"] = volksbonus;
+    if (klassenbonus !== undefined) update["allgemeines.klassenbonus"] = klassenbonus;
+    if (volksfaehigkeiten !== undefined) update["allgemeines.volksfaehigkeiten"] = volksfaehigkeiten;
+
+    if (koerper !== undefined) update["attribute.koerper"] = koerper;
+    if (agilitaet !== undefined) update["attribute.agilitaet"] = agilitaet;
+    if (geist !== undefined) update["attribute.geist"] = geist;
+
+    if (staerke !== undefined) update["eigenschaften.staerke"] = staerke;
+    if (haerte !== undefined) update["eigenschaften.haerte"] = haerte;
+    if (bewegung !== undefined) update["eigenschaften.bewegung"] = bewegung;
+    if (geschick !== undefined) update["eigenschaften.geschick"] = geschick;
+    if (verstand !== undefined) update["eigenschaften.verstand"] = verstand;
+    if (aura !== undefined) update["eigenschaften.aura"] = aura;
+    
+    if (lp !== undefined) update["werte.lp"] = lp;
+    if (tp !== undefined) update["werte.tp"] = tp;
+    if (ep !== undefined) update["werte.ep"] = ep;
+    if (tl !== undefined) update["werte.tl"] = tl;
+    if (stufe !== undefined) update["werte.stufe"] = stufe;
+    if (schaden !== undefined) update["werte.schaden"] = schaden;
+    
+    if (degeneration !== undefined) update["werteGamma.degeneration"] = degeneration;
+    if (cyberpunkte !== undefined) update["werteGamma.cyberpunkte"] = cyberpunkte;
+    if (mutation !== undefined) update["werteGamma.mutation"] = mutation;
+    
+    if (gold !== undefined) update["geld.gold"] = gold;
+    if (silber !== undefined) update["geld.silber"] = silber;
+    if (kupfer !== undefined) update["geld.kupfer"] = kupfer;
+
+    if (ruestung !== undefined) update["ruestung"] = ruestung;
+    if (waffen !== undefined) update["waffen"] = waffen;
+    if (ausruestung !== undefined) update["ausruestung"] = ausruestung;
+    if (talente !== undefined) update["talente"] = talente;
+    if (magie !== undefined) update["magie"] = magie;
+    if (sonstiges !== undefined) update["sonstiges"] = sonstiges;
+   
+  const data = await Slayers.findByIdAndUpdate(id, update, { new: true });
+
+    res.sendStatus(200);
+  } catch (error) {
+    res.status(500).send(`Internal server error (POST): ${error.message}`);
+  }
 };
 
 export const addWaffe = async (req, res) => {
@@ -145,6 +169,48 @@ export const deleteWaffe = async (req, res) => {
       {
         $pull: {
           waffen: {
+            _id: itemId,
+          },
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+export const addRuestung = async (req, res) => {
+  const { id } = req.body;
+  try {
+    const data = await Slayers.findByIdAndUpdate(
+      id,
+      {
+        $push: {
+          ruestung: {
+            ruestungName: "–",
+            ruestungPa: 0,
+            ruestungBes: "–",
+          },
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+export const deleteRuestung = async (req, res) => {
+  const { id, itemId } = req.body;
+  try {
+    const data = await Slayers.findByIdAndUpdate(
+      id,
+      {
+        $pull: {
+          ruestung: {
             _id: itemId,
           },
         },
@@ -213,7 +279,7 @@ export const addMagie = async (req, res) => {
             magieAdWd: "–",
             magieDist: "–",
             magieAkz: "–",
-            magieEffekt: "–"
+            magieEffekt: "–",
           },
         },
       },

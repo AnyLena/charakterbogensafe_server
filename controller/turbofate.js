@@ -45,44 +45,6 @@ export const postTurbofate = async (req, res) => {
   }
 };
 
-// export const postTurbofate = async (req, res) => {
-//   try {
-//     const {
-//       allgemeines: { name, beschreibung, erholung },
-//       aspekt: { konzept, motivation, persoenlich, geteilt, zusatz },
-//       methoden: {
-//         flink,
-//         kraftvoll,
-//         scharfsinnig,
-//         sorgfaeltig,
-//         tollkuehn,
-//         tueckisch,
-//       },
-//       stunts,
-//       stress: { eins, zwei, drei },
-//       konsequenzen: { leicht, mittel, schwer },
-//     } = req.body;
-//     const data = await Turbofate.create({
-//       allgemeines: { name, beschreibung, erholung },
-//       aspekt: { konzept, motivation, persoenlich, geteilt, zusatz },
-//       methoden: {
-//         flink,
-//         kraftvoll,
-//         scharfsinnig,
-//         sorgfaeltig,
-//         tollkuehn,
-//         tueckisch,
-//       },
-//       stunts,
-//       stress: { eins, zwei, drei },
-//       konsequenzen: { leicht, mittel, schwer },
-//     });
-//     res.sendStatus(201);
-//   } catch (error) {
-//     res.status(500).send("Internal server error (POST)", error.message);
-//   }
-// };
-
 export const updateTurbofate = async (req, res) => {
   const id = req.body._id;
   try {
@@ -130,8 +92,6 @@ export const updateTurbofate = async (req, res) => {
     if (schwer !== undefined) update["konsequenzen.schwer"] = schwer;
 
     const data = await Turbofate.findByIdAndUpdate(id, update, { new: true });
-    // res.status(201).send("Data sucessfully updated.");
-    // res.status(200).send(data);
     res.sendStatus(200);
   } catch (error) {
     res.status(500).send(`Internal server error (POST): ${error.message}`);
