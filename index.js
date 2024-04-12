@@ -5,6 +5,7 @@ import cors from 'cors'
 import turbofateRouter from "./routes/turbofate.js";
 import playerRouter from "./routes/player.js";
 import slayersRouter from "./routes/slayers.js";
+import splittermondRouter from "./routes/splittermond.js";
 
 const app = express();
 const port = 8000;
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use("/player", playerRouter)
 app.use("/turbo-fate", turbofateRouter);
 app.use("/slayers", slayersRouter);
+app.use("/splittermond", splittermondRouter);
 
 
 const startServer = async () => {
