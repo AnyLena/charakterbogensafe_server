@@ -197,6 +197,11 @@ const SlayersSchema = new mongoose.Schema({
       ruestungBes: {
         type: String,
       },
+      ruestungEquipped: {
+        type: Boolean,
+        required: true,
+        default: false
+      }
     },
   ],
   waffen: [
@@ -224,6 +229,20 @@ const SlayersSchema = new mongoose.Schema({
       waffeBes: {
         type: String,
       },
+      waffeIni: {
+        type: Number
+      },
+      waffeEquipped: {
+        type: Boolean,
+        required: true,
+        default: false
+      },
+      waffeArt : {
+        type: String,
+        enum: ['nah', 'fern'],
+        required: true,
+        default: "nah"
+      }
     },
   ],
   ausruestung: [

@@ -1,11 +1,12 @@
 import express from "express"
-import { addAusruestung, addMagie, addRuestung, addTalent, addWaffe, deleteAusruestung, deleteMagie, deleteRuestung, deleteTalent, deleteWaffe, getSlayers, getSlayersAll, postSlayers, updateSlayers } from "../controller/slayers.js";
+import { addAusruestung, addMagie, addRuestung, addTalent, addWaffe, deleteAusruestung, deleteMagie, deleteRuestung, deleteSlayers, deleteTalent, deleteWaffe, getSlayers, getSlayersAll, postSlayers, updateSlayers } from "../controller/slayers.js";
 
 const slayersRouter = express.Router()
 
 slayersRouter.get("/all/:id", getSlayersAll)
 slayersRouter.get("/:id", getSlayers)
 slayersRouter.post("/", postSlayers)
+slayersRouter.delete("/", deleteSlayers)
 
 slayersRouter.put("/", updateSlayers)
 

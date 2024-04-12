@@ -20,8 +20,18 @@ export const getSlayersAll = async (req, res) => {
   }
 };
 
-export const postSlayers = async (req, res) => {
+export const deleteSlayers = async (req, res) => {
   const { id } = req.body;
+  try {
+    const data = await Slayers.findByIdAndDelete(id);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+export const postSlayers = async (req, res) => {
+  const { system, id } = req.body;
   try {
     const data = await Slayers.create({
       allgemeines: {
@@ -37,6 +47,7 @@ export const postSlayers = async (req, res) => {
         {
           talentName: "...",
           talentRang: 0,
+          talentRangMax: 0,
           talentEffekt: "...",
         },
       ],
@@ -51,7 +62,7 @@ export const postSlayers = async (req, res) => {
         },
       ],
       player: id,
-      system: "gammaslayers",
+      system: system,
     });
     res.status(201).json(data);
   } catch (error) {
@@ -70,7 +81,7 @@ export const updateSlayers = async (req, res) => {
         klasse,
         volksbonus,
         klassenbonus,
-        volksfaehigkeiten
+        volksfaehigkeiten,
       },
       attribute: { koerper, agilitaet, geist },
       eigenschaften: { staerke, haerte, bewegung, geschick, verstand, aura },
@@ -87,12 +98,15 @@ export const updateSlayers = async (req, res) => {
 
     let update = {};
     if (name !== undefined) update["allgemeines.name"] = name;
-    if (beschreibung !== undefined) update["allgemeines.beschreibung"] = beschreibung;
+    if (beschreibung !== undefined)
+      update["allgemeines.beschreibung"] = beschreibung;
     if (volk !== undefined) update["allgemeines.volk"] = volk;
     if (klasse !== undefined) update["allgemeines.klasse"] = klasse;
     if (volksbonus !== undefined) update["allgemeines.volksbonus"] = volksbonus;
-    if (klassenbonus !== undefined) update["allgemeines.klassenbonus"] = klassenbonus;
-    if (volksfaehigkeiten !== undefined) update["allgemeines.volksfaehigkeiten"] = volksfaehigkeiten;
+    if (klassenbonus !== undefined)
+      update["allgemeines.klassenbonus"] = klassenbonus;
+    if (volksfaehigkeiten !== undefined)
+      update["allgemeines.volksfaehigkeiten"] = volksfaehigkeiten;
 
     if (koerper !== undefined) update["attribute.koerper"] = koerper;
     if (agilitaet !== undefined) update["attribute.agilitaet"] = agilitaet;
@@ -104,18 +118,20 @@ export const updateSlayers = async (req, res) => {
     if (geschick !== undefined) update["eigenschaften.geschick"] = geschick;
     if (verstand !== undefined) update["eigenschaften.verstand"] = verstand;
     if (aura !== undefined) update["eigenschaften.aura"] = aura;
-    
+
     if (lp !== undefined) update["werte.lp"] = lp;
     if (tp !== undefined) update["werte.tp"] = tp;
     if (ep !== undefined) update["werte.ep"] = ep;
     if (tl !== undefined) update["werte.tl"] = tl;
     if (stufe !== undefined) update["werte.stufe"] = stufe;
     if (schaden !== undefined) update["werte.schaden"] = schaden;
-    
-    if (degeneration !== undefined) update["werteGamma.degeneration"] = degeneration;
-    if (cyberpunkte !== undefined) update["werteGamma.cyberpunkte"] = cyberpunkte;
+
+    if (degeneration !== undefined)
+      update["werteGamma.degeneration"] = degeneration;
+    if (cyberpunkte !== undefined)
+      update["werteGamma.cyberpunkte"] = cyberpunkte;
     if (mutation !== undefined) update["werteGamma.mutation"] = mutation;
-    
+
     if (gold !== undefined) update["geld.gold"] = gold;
     if (silber !== undefined) update["geld.silber"] = silber;
     if (kupfer !== undefined) update["geld.kupfer"] = kupfer;
@@ -126,8 +142,8 @@ export const updateSlayers = async (req, res) => {
     if (talente !== undefined) update["talente"] = talente;
     if (magie !== undefined) update["magie"] = magie;
     if (sonstiges !== undefined) update["sonstiges"] = sonstiges;
-   
-  const data = await Slayers.findByIdAndUpdate(id, update, { new: true });
+
+    const data = await Slayers.findByIdAndUpdate(id, update, { new: true });
 
     res.sendStatus(200);
   } catch (error) {
