@@ -7,6 +7,7 @@ const SplittermondSchema = new mongoose.Schema({
       type: String,
     },
     ausbildung: {
+      default: "–",
       type: String,
     },
     kultur: {
@@ -79,7 +80,7 @@ const SplittermondSchema = new mongoose.Schema({
         type: Number,
       },
     },
-    kostitution: {
+    konstitution: {
       basis: {
         default: 0,
         type: Number,
@@ -129,6 +130,10 @@ const SplittermondSchema = new mongoose.Schema({
         type: Number,
       },
     },
+    groessenklasse: {
+        default: 0,
+        type: Number,
+      },
   },
   fertigkeiten: {
     akrobatik: {

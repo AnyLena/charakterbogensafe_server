@@ -20,15 +20,15 @@ export const getSplittermondAll = async (req, res) => {
   }
 };
 
-// export const deleteSplittermond = async (req, res) => {
-//   const { id } = req.body;
-//   try {
-//     const data = await Splittermond.findByIdAndDelete(id);
-//     res.status(200).json(data);
-//   } catch (error) {
-//     res.status(500).send(error.message);
-//   }
-// };
+export const deleteSplittermond = async (req, res) => {
+  const { id } = req.body;
+  try {
+    const data = await Splittermond.findByIdAndDelete(id);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
 
 export const postSplittermond = async (req, res) => {
   const { id } = req.body;
@@ -58,6 +58,17 @@ export const updateSplittermond = async (req, res) => {
         erfahrungspunkte,
         heldengrad,
       },
+      attribute: {
+        ausstrahlung,
+        beweglichkeit,
+        intuition,
+        konstitution,
+        mystik,
+        staerke,
+        verstand,
+        willenskraft,
+        groessenklasse,
+      },
     } = req.body;
 
     let update = {};
@@ -72,9 +83,20 @@ export const updateSplittermond = async (req, res) => {
     if (geburtsort !== undefined)
       update["allgemeines.klassenbonus"] = geburtsort;
     if (schwaechen !== undefined) update["allgemeines.schwaechen"] = schwaechen;
-    if (erscheinung !== undefined) update["allgemeines.erscheinung"] = erscheinung;
+    if (erscheinung !== undefined)
+      update["allgemeines.erscheinung"] = erscheinung;
     if (heldengrad !== undefined) update["allgemeines.heldengrad"] = heldengrad;
 
+    if (ausstrahlung !== undefined) update["attribute.ausstrahlung"] = ausstrahlung;
+    if (beweglichkeit !== undefined) update["attribute.beweglichkeit"] = beweglichkeit;
+    if (intuition !== undefined) update["attribute.intuition"] = intuition;
+    if (konstitution !== undefined) update["attribute.konstitution"] = konstitution;
+    if (mystik !== undefined) update["attribute.mystik"] = mystik;
+    if (staerke !== undefined) update["attribute.staerke"] = staerke;
+    if (verstand !== undefined) update["attribute.verstand"] = verstand;
+    if (willenskraft !== undefined) update["attribute.willenskraft"] = willenskraft;
+    if (groessenklasse !== undefined) update["attribute.groessenklasse"] = groessenklasse;
+    
     const data = await Splittermond.findByIdAndUpdate(id, update, {
       new: true,
     });
