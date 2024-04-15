@@ -98,11 +98,21 @@ export const updateSplittermond = async (req, res) => {
         wahrnehmung,
         zaehigkeit,
       },
+      kampffertigkeiten: {
+        handgemenge,
+        hiebwaffen,
+        kettenwaffen,
+        klingenwaffen,
+        stangenwaffen,
+        schusswaffen,
+        wurfwaffen,
+      },
       meisterschaften,
       kampfmeisterschaften,
       magiemeisterschaften,
       staerken,
       zauber,
+      waffen,
     } = req.body;
 
     let update = {};
@@ -181,15 +191,31 @@ export const updateSplittermond = async (req, res) => {
     if (zaehigkeit !== undefined)
       update["fertigkeiten.zaehigkeit"] = zaehigkeit;
 
+    if (handgemenge !== undefined)
+      update["kampffertigkeiten.handgemenge"] = handgemenge;
+    if (hiebwaffen !== undefined)
+      update["kampffertigkeiten.hiebwaffen"] = hiebwaffen;
+    if (kettenwaffen !== undefined)
+      update["kampffertigkeiten.kettenwaffen"] = kettenwaffen;
+    if (klingenwaffen !== undefined)
+      update["kampffertigkeiten.klingenwaffen"] = klingenwaffen;
+    if (stangenwaffen !== undefined)
+      update["kampffertigkeiten.stangenwaffen"] = stangenwaffen;
+    if (schusswaffen !== undefined)
+      update["kampffertigkeiten.schusswaffen"] = schusswaffen;
+    if (wurfwaffen !== undefined)
+      update["kampffertigkeiten.wurfwaffen"] = wurfwaffen;
+
     if (meisterschaften !== undefined)
       update["meisterschaften"] = meisterschaften;
-      if (kampfmeisterschaften !== undefined)
+    if (kampfmeisterschaften !== undefined)
       update["kampfmeisterschaften"] = kampfmeisterschaften;
-      if (magiemeisterschaften !== undefined)
+    if (magiemeisterschaften !== undefined)
       update["magiemeisterschaften"] = magiemeisterschaften;
 
     if (staerken !== undefined) update["staerken"] = staerken;
     if (zauber !== undefined) update["zauber"] = zauber;
+    if (waffen !== undefined) update["waffen"] = waffen;
 
     const data = await Splittermond.findByIdAndUpdate(id, update, {
       new: true,

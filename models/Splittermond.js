@@ -131,9 +131,9 @@ const SplittermondSchema = new mongoose.Schema({
       },
     },
     groessenklasse: {
-        default: 0,
-        type: Number,
-      },
+      default: 0,
+      type: Number,
+    },
   },
   fertigkeiten: {
     akrobatik: {
@@ -245,6 +245,36 @@ const SplittermondSchema = new mongoose.Schema({
       type: Number,
     },
   },
+  kampffertigkeiten: {
+    handgemenge: {
+      default: 0,
+      type: Number,
+    },
+    hiebwaffen: {
+      default: 0,
+      type: Number,
+    },
+    kettenwaffen: {
+      default: 0,
+      type: Number,
+    },
+    klingenwaffen: {
+      default: 0,
+      type: Number,
+    },
+    stangenwaffen: {
+      default: 0,
+      type: Number,
+    },
+    schusswaffen: {
+      default: 0,
+      type: Number,
+    },
+    wurfwaffen: {
+      default: 0,
+      type: Number,
+    },
+  },
   meisterschaften: [
     {
       meisterschaftName: {
@@ -307,7 +337,7 @@ const SplittermondSchema = new mongoose.Schema({
   ],
   zauber: [
     {
-    zauberName: {
+      zauberName: {
         default: "–",
         type: String,
       },
@@ -350,6 +380,47 @@ const SplittermondSchema = new mongoose.Schema({
       zauberErfolgsgrade: {
         default: "–",
         type: String,
+      },
+    },
+  ],
+  waffen: [
+    {
+      waffeName: {
+        default: "–",
+        type: String,
+      },
+      waffeFertigkeit: {
+        default: "–",
+        type: String,
+      },
+      waffeAttr1: {
+        default: "–",
+        type: String,
+      },
+      waffeAttr2: {
+        default: "–",
+        type: String,
+      },
+      waffeMod: {
+        default: 0,
+        type: Number,
+      },
+      waffeWGS: {
+        default: 0,
+        type: Number,
+      },
+      waffeSchaden: {
+        default: "–",
+        type: String,
+      },
+      waffeMerkmale: {
+        default: "–",
+        type: String,
+      },
+      waffeTyp: {
+        type: String,
+        enum: ['nah', 'fern'],
+        default: "nah"
       },
     },
   ],
