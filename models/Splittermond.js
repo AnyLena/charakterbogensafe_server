@@ -144,7 +144,7 @@ const SplittermondSchema = new mongoose.Schema({
       default: 0,
       type: Number,
     },
-    anführen: {
+    anfuehren: {
       default: 0,
       type: Number,
     },
@@ -196,7 +196,7 @@ const SplittermondSchema = new mongoose.Schema({
       default: 0,
       type: Number,
     },
-    jadtkunst: {
+    jagdkunst: {
       default: 0,
       type: Number,
     },
@@ -256,6 +256,98 @@ const SplittermondSchema = new mongoose.Schema({
         type: String,
       },
       meisterschaftWirkung: {
+        default: "–",
+        type: String,
+      },
+    },
+  ],
+  kampfmeisterschaften: [
+    {
+      kampfmeisterschaftName: {
+        default: "–",
+        type: String,
+      },
+      kampfmeisterschaftFertigkeit: {
+        default: "–",
+        type: String,
+      },
+      kampfmeisterschaftWirkung: {
+        default: "–",
+        type: String,
+      },
+    },
+  ],
+  magiemeisterschaften: [
+    {
+      magiemeisterschaftName: {
+        default: "–",
+        type: String,
+      },
+      magiemeisterschaftFertigkeit: {
+        default: "–",
+        type: String,
+      },
+      magiemeisterschaftWirkung: {
+        default: "–",
+        type: String,
+      },
+    },
+  ],
+  staerken: [
+    {
+      staerkeName: {
+        default: "–",
+        type: String,
+      },
+      staerkeWirkung: {
+        default: "–",
+        type: String,
+      },
+    },
+  ],
+  zauber: [
+    {
+    zauberName: {
+        default: "–",
+        type: String,
+      },
+      zauberSchule: {
+        default: "–",
+        type: String,
+      },
+      zauberTypus: {
+        default: "–",
+        type: String,
+      },
+      zauberSchw: {
+        default: "0",
+        type: Number,
+      },
+      zauberKosten: {
+        default: "–",
+        type: String,
+      },
+      zauberZD: {
+        default: "0",
+        type: Number,
+      },
+      zauberRW: {
+        default: "–",
+        type: String,
+      },
+      zauberWD: {
+        default: "–",
+        type: String,
+      },
+      zauberWB: {
+        default: "–",
+        type: String,
+      },
+      zauberWirkung: {
+        default: "–",
+        type: String,
+      },
+      zauberErfolgsgrade: {
         default: "–",
         type: String,
       },
