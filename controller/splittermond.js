@@ -1,4 +1,5 @@
 import Splittermond from "../models/Splittermond.js";
+import Mondzeichen from "../models/Mondzeichen.js";
 
 export const getSplittermond = async (req, res) => {
   const { id } = req.params;
@@ -113,6 +114,9 @@ export const updateSplittermond = async (req, res) => {
       staerken,
       zauber,
       waffen,
+      sprachen,
+      ressourcen,
+      mondzeichen: { mondID, splitterpunkte, splitterpunkteAktuell },
     } = req.body;
 
     let update = {};
@@ -213,7 +217,14 @@ export const updateSplittermond = async (req, res) => {
     if (magiemeisterschaften !== undefined)
       update["magiemeisterschaften"] = magiemeisterschaften;
 
+    if (mondID !== undefined) update["mondzeichen.mondID"] = mondID;
+    if (splitterpunkte !== undefined) update["mondzeichen.splitterpunkte"] = splitterpunkte;
+    if (splitterpunkteAktuell !== undefined) update["mondzeichen.splitterpunkteAktuell"] = splitterpunkteAktuell;
+
     if (staerken !== undefined) update["staerken"] = staerken;
+    if (sprachen !== undefined) update["sprachen"] = sprachen;
+    if (ressourcen !== undefined) update["ressourcen"] = ressourcen;
+
     if (zauber !== undefined) update["zauber"] = zauber;
     if (waffen !== undefined) update["waffen"] = waffen;
 
@@ -265,172 +276,27 @@ export const deleteItem = async (req, res) => {
   }
 };
 
-// export const addRuestung = async (req, res) => {
-//   const { id } = req.body;
-//   try {
-//     const data = await Splittermond.findByIdAndUpdate(
-//       id,
-//       {
-//         $push: {
-//           ruestung: {
-//             ruestungName: "–",
-//             ruestungPa: 0,
-//             ruestungBes: "–",
-//           },
-//         },
-//       },
-//       { new: true }
-//     );
-//     res.status(200).json(data);
-//   } catch (error) {
-//     res.status(500).send(error.message);
-//   }
-// };
+export const postMondzeichen = async (req, res) => {
+  const { mondName, mondBeschreibung, mondVerstaerkt, mondGeheim } = req.body;
+  try {
+    const data = await Mondzeichen.create({
+      mondName,
+      mondBeschreibung,
+      mondVerstaerkt,
+      mondGeheim,
+    });
+    res.status(201).json(data);
+  } catch (error) {
+    res.status(500).send(`Internal server error (POST) ${error.message}`);
+  }
+};
 
-// export const deleteRuestung = async (req, res) => {
-//   const { id, itemId } = req.body;
-//   try {
-//     const data = await Splittermond.findByIdAndUpdate(
-//       id,
-//       {
-//         $pull: {
-//           ruestung: {
-//             _id: itemId,
-//           },
-//         },
-//       },
-//       { new: true }
-//     );
-//     res.status(200).json(data);
-//   } catch (error) {
-//     res.status(500).send(error.message);
-//   }
-// };
-
-// export const addTalent = async (req, res) => {
-//   const { id } = req.body;
-//   try {
-//     const data = await Splittermond.findByIdAndUpdate(
-//       id,
-//       {
-//         $push: {
-//           talente: {
-//             talentName: "–",
-//             talentRang: 1,
-//             talentRangMax: 3,
-//             talentEffekt: "–",
-//           },
-//         },
-//       },
-//       { new: true }
-//     );
-//     res.status(200).json(data);
-//   } catch (error) {
-//     res.status(500).send(error.message);
-//   }
-// };
-
-// export const deleteTalent = async (req, res) => {
-//   const { id, itemId } = req.body;
-//   try {
-//     const data = await Splittermond.findByIdAndUpdate(
-//       id,
-//       {
-//         $pull: {
-//           talente: {
-//             _id: itemId,
-//           },
-//         },
-//       },
-//       { new: true }
-//     );
-//     res.status(200).json(data);
-//   } catch (error) {
-//     res.status(500).send(error.message);
-//   }
-// };
-
-// export const addMagie = async (req, res) => {
-//   const { id } = req.body;
-//   try {
-//     const data = await Splittermond.findByIdAndUpdate(
-//       id,
-//       {
-//         $push: {
-//           magie: {
-//             magieName: "–",
-//             magieKb: "–",
-//             magieAdWd: "–",
-//             magieDist: "–",
-//             magieAkz: "–",
-//             magieEffekt: "–",
-//           },
-//         },
-//       },
-//       { new: true }
-//     );
-//     res.status(200).json(data);
-//   } catch (error) {
-//     res.status(500).send(error.message);
-//   }
-// };
-
-// export const deleteMagie = async (req, res) => {
-//   const { id, itemId } = req.body;
-//   try {
-//     const data = await Splittermond.findByIdAndUpdate(
-//       id,
-//       {
-//         $pull: {
-//           magie: {
-//             _id: itemId,
-//           },
-//         },
-//       },
-//       { new: true }
-//     );
-//     res.status(200).json(data);
-//   } catch (error) {
-//     res.status(500).send(error.message);
-//   }
-// };
-
-// export const addAusruestung = async (req, res) => {
-//   const { id } = req.body;
-//   try {
-//     const data = await Splittermond.findByIdAndUpdate(
-//       id,
-//       {
-//         $push: {
-//           ausruestung: {
-//             ausruestungName: "–",
-//           },
-//         },
-//       },
-//       { new: true }
-//     );
-//     res.status(200).json(data);
-//   } catch (error) {
-//     res.status(500).send(error.message);
-//   }
-// };
-
-// export const deleteAusruestung = async (req, res) => {
-//   const { id, itemId } = req.body;
-//   try {
-//     const data = await Splittermond.findByIdAndUpdate(
-//       id,
-//       {
-//         $pull: {
-//           ausruestung: {
-//             _id: itemId,
-//           },
-//         },
-//       },
-//       { new: true }
-//     );
-//     res.status(200).json(data);
-//   } catch (error) {
-//     res.status(500).send(error.message);
-//   }
-// };
+export const getMondzeichen = async (req, res) => {
+    const { id } = req.params;
+    try {
+      const data = await Mondzeichen.findById(id);
+      res.status(200).json(data);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  };

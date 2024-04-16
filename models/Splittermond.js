@@ -419,11 +419,131 @@ const SplittermondSchema = new mongoose.Schema({
       },
       waffeTyp: {
         type: String,
-        enum: ['nah', 'fern'],
-        default: "nah"
+        enum: ["nah", "fern"],
+        default: "nah",
       },
     },
   ],
+  sprachen: {
+    default: "Basargnomisch",
+    type: String,
+  },
+  ressourcen: {
+    ansehen: {
+      wert: {
+        default: 0,
+        type: Number,
+      },
+      bedeutung: {
+        default: "–",
+        type: String,
+      },
+    },
+    gefolge: {
+      wert: {
+        default: 0,
+        type: Number,
+      },
+      bedeutung: {
+        default: "–",
+        type: String,
+      },
+    },
+    kontakte: {
+      wert: {
+        default: 0,
+        type: Number,
+      },
+      bedeutung: {
+        default: "–",
+        type: String,
+      },
+    },
+    kreatur: {
+      wert: {
+        default: 0,
+        type: Number,
+      },
+      bedeutung: {
+        default: "–",
+        type: String,
+      },
+    },
+    mentor: {
+      wert: {
+        default: 0,
+        type: Number,
+      },
+      bedeutung: {
+        default: "–",
+        type: String,
+      },
+    },
+    rang: {
+      wert: {
+        default: 0,
+        type: Number,
+      },
+      bedeutung: {
+        default: "–",
+        type: String,
+      },
+    },
+    relikt: {
+      wert: {
+        default: 0,
+        type: Number,
+      },
+      bedeutung: {
+        default: "–",
+        type: String,
+      },
+    },
+    stand: {
+      wert: {
+        default: 0,
+        type: Number,
+      },
+      bedeutung: {
+        default: "–",
+        type: String,
+      },
+    },
+    vermoegen: {
+      wert: {
+        default: 0,
+        type: Number,
+      },
+      bedeutung: {
+        default: "–",
+        type: String,
+      },
+    },
+    zuflucht: {
+      wert: {
+        default: 0,
+        type: Number,
+      },
+      bedeutung: {
+        default: "–",
+        type: String,
+      },
+    },
+  },
+  mondzeichen: {
+    mondID: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Mondzeichen",
+    },
+    splitterpunkte: {
+      default: 3,
+      type: Number,
+    },
+    splitterpunkteAktuell: {
+        default: 3,
+        type: Number,
+      },
+  },
   player: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Player",
