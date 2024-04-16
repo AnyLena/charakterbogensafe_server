@@ -114,6 +114,8 @@ export const updateSplittermond = async (req, res) => {
       staerken,
       zauber,
       waffen,
+      ruestungen,
+      schild,
       sprachen,
       ressourcen,
       mondzeichen: { mondID, splitterpunkte, splitterpunkteAktuell },
@@ -227,6 +229,8 @@ export const updateSplittermond = async (req, res) => {
 
     if (zauber !== undefined) update["zauber"] = zauber;
     if (waffen !== undefined) update["waffen"] = waffen;
+    if (ruestungen !== undefined) update["ruestungen"] = ruestungen;
+    if (schild !== undefined) update["schild"] = schild;
 
     const data = await Splittermond.findByIdAndUpdate(id, update, {
       new: true,

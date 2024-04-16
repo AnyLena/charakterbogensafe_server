@@ -424,6 +424,54 @@ const SplittermondSchema = new mongoose.Schema({
       },
     },
   ],
+  ruestungen: [
+    {
+      ruestungName: {
+        default: "–",
+        type: String,
+      },
+      ruestungVTD: {
+        default: 0,
+        type: Number,
+      },
+      ruestungSR: {
+        default: 0,
+        type: Number,
+      },
+      ruestungBeh: {
+        default: 0,
+        type: Number,
+      },
+      ruestungTick: {
+        default: 0,
+        type: Number,
+      }
+    },
+  ],
+  schild: [
+    {
+      schildName: {
+        default: "–",
+        type: String,
+      },
+      schildVTD: {
+        default: 0,
+        type: Number,
+      },
+      schildMod: {
+        default: 0,
+        type: Number,
+      },
+      schildKampffertigkeit: {
+        default: "–",
+        type: String,
+      },
+      schildMerkmale: {
+        default: "–",
+        type: String,
+      }
+    },
+  ],
   sprachen: {
     default: "Basargnomisch",
     type: String,
