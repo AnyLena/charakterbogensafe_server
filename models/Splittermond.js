@@ -245,6 +245,84 @@ const SplittermondSchema = new mongoose.Schema({
       type: Number,
     },
   },
+  magieschulen: {
+    bannmagie: {
+      default: 0,
+      type: Number,
+    },
+    beherrschungsmagie: {
+      default: 0,
+      type: Number,
+    },
+    bewegungsmagie: {
+      default: 0,
+      type: Number,
+    },
+    erkenntnismagie: {
+      default: 0,
+      type: Number,
+    },
+    felsmagie: {
+      default: 0,
+      type: Number,
+    },
+    feuermagie: {
+      default: 0,
+      type: Number,
+    },
+    heilungsmagie: {
+      default: 0,
+      type: Number,
+    },
+    illusionsmagie: {
+      default: 0,
+      type: Number,
+    },
+    kampfmagie: {
+      default: 0,
+      type: Number,
+    },
+    lichtmagie: {
+      default: 0,
+      type: Number,
+    },
+    naturmagie: {
+      default: 0,
+      type: Number,
+    },
+    schattenmagie: {
+      default: 0,
+      type: Number,
+    },
+    schicksalsmagie: {
+      default: 0,
+      type: Number,
+    },
+    schutzmagie: {
+      default: 0,
+      type: Number,
+    },
+    staerkungsmagie: {
+      default: 0,
+      type: Number,
+    },
+    todesmagie: {
+      default: 0,
+      type: Number,
+    },
+    verwandlungsmagie: {
+      default: 0,
+      type: Number,
+    },
+    wassermagie: {
+      default: 0,
+      type: Number,
+    },
+    windmagie: {
+      default: 0,
+      type: Number,
+    },
+  },
   kampffertigkeiten: {
     handgemenge: {
       default: 0,
@@ -417,6 +495,14 @@ const SplittermondSchema = new mongoose.Schema({
         default: "–",
         type: String,
       },
+      waffeRW: {
+        default: 0,
+        type: Number,
+      },
+      waffeMun: {
+        default: 0,
+        type: Number,
+      },
       waffeTyp: {
         type: String,
         enum: ["nah", "fern"],
@@ -445,7 +531,7 @@ const SplittermondSchema = new mongoose.Schema({
       ruestungTick: {
         default: 0,
         type: Number,
-      }
+      },
     },
   ],
   schild: [
@@ -469,7 +555,7 @@ const SplittermondSchema = new mongoose.Schema({
       schildMerkmale: {
         default: "–",
         type: String,
-      }
+      },
     },
   ],
   sprachen: {
@@ -588,9 +674,49 @@ const SplittermondSchema = new mongoose.Schema({
       type: Number,
     },
     splitterpunkteAktuell: {
-        default: 3,
-        type: Number,
-      },
+      default: 3,
+      type: Number,
+    },
+  },
+  lebenspunkte: {
+    lebenKanalisiert: {
+      default: 0,
+      type: Number,
+    },
+    lebenErschoepft: {
+      default: 0,
+      type: Number,
+    },
+    lebenVerzehrt: {
+      default: 0,
+      type: Number,
+    },
+    atemholen: {
+      default: false,
+      type: Boolean,
+    },
+    zustaende: {
+      default: "keine",
+      type: String,
+    },
+  },
+  fokuspunkte: {
+    fokusKanalisiert: {
+      default: 0,
+      type: Number,
+    },
+    fokusErschoepft: {
+      default: 0,
+      type: Number,
+    },
+    fokusVerzehrt: {
+      default: 0,
+      type: Number,
+    },
+  },
+  artefakte: {
+    default: "–",
+    type: String,
   },
   player: {
     type: mongoose.Schema.Types.ObjectId,

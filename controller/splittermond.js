@@ -99,6 +99,27 @@ export const updateSplittermond = async (req, res) => {
         wahrnehmung,
         zaehigkeit,
       },
+      magieschulen: {
+        bannmagie,
+        beherrschungsmagie,
+        bewegungsmagie,
+        erkenntnismagie,
+        felsmagie,
+        feuermagie,
+        heilungsmagie,
+        illusionsmagie,
+        kampfmagie,
+        lichtmagie,
+        naturmagie,
+        schattenmagie,
+        schicksalsmagie,
+        schutzmagie,
+        staerkungsmagie,
+        todesmagie,
+        verwandlungsmagie,
+        wassermagie,
+        windmagie,
+      },
       kampffertigkeiten: {
         handgemenge,
         hiebwaffen,
@@ -118,7 +139,16 @@ export const updateSplittermond = async (req, res) => {
       schild,
       sprachen,
       ressourcen,
+      artefakte,
       mondzeichen: { mondID, splitterpunkte, splitterpunkteAktuell },
+      lebenspunkte: {
+        lebenKanalisiert,
+        lebenErschoepft,
+        lebenVerzehrt,
+        atemholen,
+        zustaende,
+      },
+      fokuspunkte: { fokusKanalisiert, fokusErschoepft, fokusVerzehrt },
     } = req.body;
 
     let update = {};
@@ -197,6 +227,42 @@ export const updateSplittermond = async (req, res) => {
     if (zaehigkeit !== undefined)
       update["fertigkeiten.zaehigkeit"] = zaehigkeit;
 
+    if (bannmagie !== undefined) update["magieschulen.bannmagie"] = bannmagie;
+    if (beherrschungsmagie !== undefined)
+      update["magieschulen.beherrschungsmagie"] = beherrschungsmagie;
+    if (bewegungsmagie !== undefined)
+      update["magieschulen.bewegungsmagie"] = bewegungsmagie;
+    if (erkenntnismagie !== undefined)
+      update["magieschulen.erkenntnismagie"] = erkenntnismagie;
+    if (felsmagie !== undefined) update["magieschulen.felsmagie"] = felsmagie;
+    if (feuermagie !== undefined)
+      update["magieschulen.feuermagie"] = feuermagie;
+    if (heilungsmagie !== undefined)
+      update["magieschulen.heilungsmagie"] = heilungsmagie;
+    if (illusionsmagie !== undefined)
+      update["magieschulen.illusionsmagie"] = illusionsmagie;
+    if (kampfmagie !== undefined)
+      update["magieschulen.kampfmagie"] = kampfmagie;
+    if (lichtmagie !== undefined)
+      update["magieschulen.lichtmagie"] = lichtmagie;
+    if (naturmagie !== undefined)
+      update["magieschulen.naturmagie"] = naturmagie;
+    if (schattenmagie !== undefined)
+      update["magieschulen.schattenmagie"] = schattenmagie;
+    if (schicksalsmagie !== undefined)
+      update["magieschulen.schicksalsmagie"] = schicksalsmagie;
+    if (schutzmagie !== undefined)
+      update["magieschulen.schutzmagie"] = schutzmagie;
+    if (staerkungsmagie !== undefined)
+      update["magieschulen.staerkungsmagie"] = staerkungsmagie;
+    if (todesmagie !== undefined)
+      update["magieschulen.todesmagie"] = todesmagie;
+    if (verwandlungsmagie !== undefined)
+      update["magieschulen.verwandlungsmagie"] = verwandlungsmagie;
+    if (wassermagie !== undefined)
+      update["magieschulen.wassermagie"] = wassermagie;
+    if (windmagie !== undefined) update["magieschulen.windmagie"] = windmagie;
+
     if (handgemenge !== undefined)
       update["kampffertigkeiten.handgemenge"] = handgemenge;
     if (hiebwaffen !== undefined)
@@ -220,8 +286,26 @@ export const updateSplittermond = async (req, res) => {
       update["magiemeisterschaften"] = magiemeisterschaften;
 
     if (mondID !== undefined) update["mondzeichen.mondID"] = mondID;
-    if (splitterpunkte !== undefined) update["mondzeichen.splitterpunkte"] = splitterpunkte;
-    if (splitterpunkteAktuell !== undefined) update["mondzeichen.splitterpunkteAktuell"] = splitterpunkteAktuell;
+    if (splitterpunkte !== undefined)
+      update["mondzeichen.splitterpunkte"] = splitterpunkte;
+    if (splitterpunkteAktuell !== undefined)
+      update["mondzeichen.splitterpunkteAktuell"] = splitterpunkteAktuell;
+
+    if (lebenKanalisiert !== undefined)
+      update["lebenspunkte.lebenKanalisiert"] = lebenKanalisiert;
+    if (lebenErschoepft !== undefined)
+      update["lebenspunkte.lebenErschoepft"] = lebenErschoepft;
+    if (lebenVerzehrt !== undefined)
+      update["lebenspunkte.lebenVerzehrt"] = lebenVerzehrt;
+    if (atemholen !== undefined) update["lebenspunkte.atemholen"] = atemholen;
+    if (zustaende !== undefined) update["lebenspunkte.zustaende"] = zustaende;
+
+    if (fokusKanalisiert !== undefined)
+      update["fokuspunkte.fokusKanalisiert"] = fokusKanalisiert;
+    if (fokusErschoepft !== undefined)
+      update["fokuspunkte.fokusErschoepft"] = fokusErschoepft;
+    if (fokusVerzehrt !== undefined)
+      update["fokuspunkte.fokusVerzehrt"] = fokusVerzehrt;
 
     if (staerken !== undefined) update["staerken"] = staerken;
     if (sprachen !== undefined) update["sprachen"] = sprachen;
@@ -231,6 +315,8 @@ export const updateSplittermond = async (req, res) => {
     if (waffen !== undefined) update["waffen"] = waffen;
     if (ruestungen !== undefined) update["ruestungen"] = ruestungen;
     if (schild !== undefined) update["schild"] = schild;
+    
+    if (artefakte !== undefined) update["artefakte"] = artefakte;
 
     const data = await Splittermond.findByIdAndUpdate(id, update, {
       new: true,
@@ -296,11 +382,11 @@ export const postMondzeichen = async (req, res) => {
 };
 
 export const getMondzeichen = async (req, res) => {
-    const { id } = req.params;
-    try {
-      const data = await Mondzeichen.findById(id);
-      res.status(200).json(data);
-    } catch (error) {
-      res.status(500).send(error.message);
-    }
-  };
+  const { id } = req.params;
+  try {
+    const data = await Mondzeichen.findById(id);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
