@@ -718,6 +718,28 @@ const SplittermondSchema = new mongoose.Schema({
     default: "–",
     type: String,
   },
+  begleiter: {
+    default: false,
+    type: Boolean,
+  },
+  ausruestung: {
+    default: "–",
+    type: String
+  },
+  geld: {
+    solare: {
+      default: 0,
+      type: Number,
+    },
+    lunare: {
+      default: 0,
+      type: Number,
+    },
+    telare: {
+      default: 0,
+      type: Number,
+    },
+  },
   player: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Player",

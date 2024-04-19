@@ -32,10 +32,11 @@ export const deleteSplittermond = async (req, res) => {
 };
 
 export const postSplittermond = async (req, res) => {
-  const { id } = req.body;
+  const { id, begleiter } = req.body;
   try {
     const data = await Splittermond.create({
       player: id,
+      begleiter,
     });
     res.status(201).json(data);
   } catch (error) {
@@ -149,6 +150,8 @@ export const updateSplittermond = async (req, res) => {
         zustaende,
       },
       fokuspunkte: { fokusKanalisiert, fokusErschoepft, fokusVerzehrt },
+      geld: { solare, lunare, telare },
+      ausruestung,
     } = req.body;
 
     let update = {};
@@ -307,15 +310,20 @@ export const updateSplittermond = async (req, res) => {
     if (fokusVerzehrt !== undefined)
       update["fokuspunkte.fokusVerzehrt"] = fokusVerzehrt;
 
+    if (solare !== undefined) update["geld.solare"] = solare;
+    if (lunare !== undefined) update["geld.lunare"] = lunare;
+    if (telare !== undefined) update["geld.telare"] = telare;
+
     if (staerken !== undefined) update["staerken"] = staerken;
     if (sprachen !== undefined) update["sprachen"] = sprachen;
     if (ressourcen !== undefined) update["ressourcen"] = ressourcen;
+    if (ausruestung !== undefined) update["ausruestung"] = ausruestung;
 
     if (zauber !== undefined) update["zauber"] = zauber;
     if (waffen !== undefined) update["waffen"] = waffen;
     if (ruestungen !== undefined) update["ruestungen"] = ruestungen;
     if (schild !== undefined) update["schild"] = schild;
-    
+
     if (artefakte !== undefined) update["artefakte"] = artefakte;
 
     const data = await Splittermond.findByIdAndUpdate(id, update, {
