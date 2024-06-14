@@ -87,7 +87,7 @@ export const updateSplittermond = async (req, res) => {
         handwerk,
         heilkunde,
         heimlichkeit,
-        jadtkunst,
+        jagdkunst,
         laenderkunde,
         naturkunde,
         redegewandtheit,
@@ -208,7 +208,7 @@ export const updateSplittermond = async (req, res) => {
     if (heilkunde !== undefined) update["fertigkeiten.heilkunde"] = heilkunde;
     if (heimlichkeit !== undefined)
       update["fertigkeiten.heimlichkeit"] = heimlichkeit;
-    if (jadtkunst !== undefined) update["fertigkeiten.jadtkunst"] = jadtkunst;
+    if (jagdkunst !== undefined) update["fertigkeiten.jagdkunst"] = jagdkunst;
     if (laenderkunde !== undefined)
       update["fertigkeiten.laenderkunde"] = laenderkunde;
     if (naturkunde !== undefined)
