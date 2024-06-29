@@ -1,5 +1,6 @@
 import Splittermond from "../models/Splittermond.js";
 import Mondzeichen from "../models/Mondzeichen.js";
+import Meisterschaft from "../models/Meisterschaften.js";
 
 export const getSplittermond = async (req, res) => {
   const { id } = req.params;
@@ -393,6 +394,31 @@ export const getMondzeichen = async (req, res) => {
   const { id } = req.params;
   try {
     const data = await Mondzeichen.findById(id);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+export const postMeisterschaft = async (req, res) => {
+  const { name, schwelle, gruppe, fertigkeiten } = req.body;
+  try {
+    const data = await Meisterschaft.create({
+      name,
+      schwelle,
+      gruppe,
+      fertigkeiten,
+    });
+    res.status(201).json(data);
+  } catch (error) {
+    res.status(500).send(`Internal server error (POST) ${error.message}`);
+  }
+};
+
+export const getMeisterschaft = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const data = await Meisterschaft.findById(id);
     res.status(200).json(data);
   } catch (error) {
     res.status(500).send(error.message);
