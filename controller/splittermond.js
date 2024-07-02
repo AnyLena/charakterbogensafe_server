@@ -415,10 +415,13 @@ export const postMeisterschaft = async (req, res) => {
   }
 };
 
-export const getMeisterschaft = async (req, res) => {
-  const { id } = req.params;
+export const getMeisterschaften = async (req, res) => {
+  const { fertigkeit, gruppe } = req.params;
   try {
-    const data = await Meisterschaft.findById(id);
+    const data = await Meisterschaft.find({
+      gruppe,
+      fertigkeiten: fertigkeit
+    });
     res.status(200).json(data);
   } catch (error) {
     res.status(500).send(error.message);
