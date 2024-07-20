@@ -19,8 +19,8 @@ const splittermondRouter = express.Router();
 
 splittermondRouter.get("/all/:id", verifyToken, getSplittermondAll);
 splittermondRouter.get("/:id", verifyToken, getSplittermond);
-splittermondRouter.post("/", postSplittermond);
-splittermondRouter.delete("/", deleteSplittermond);
+splittermondRouter.post("/", verifyToken, postSplittermond);
+splittermondRouter.delete("/", verifyToken, deleteSplittermond);
 splittermondRouter.put("/", updateSplittermond);
 
 splittermondRouter.put("/addItem", addItem);
