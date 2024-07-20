@@ -6,6 +6,11 @@ const SplittermondSchema = new mongoose.Schema({
       default: "–",
       type: String,
     },
+    geschlecht: {
+      default: "d",
+      enum: ["m", "w", "d"],
+      type: String,
+    },
     ausbildung: {
       default: "–",
       type: String,
@@ -724,7 +729,7 @@ const SplittermondSchema = new mongoose.Schema({
   },
   ausruestung: {
     default: "–",
-    type: String
+    type: String,
   },
   geld: {
     solare: {

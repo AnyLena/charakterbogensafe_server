@@ -157,6 +157,7 @@ export const updateSplittermond = async (req, res) => {
 
     let update = {};
     if (name !== undefined) update["allgemeines.name"] = name;
+    if (geschlecht !== undefined) update["allgemeines.geschlecht"] = geschlecht;
     if (erfahrungspunkte !== undefined)
       update["allgemeines.erfahrungspunkte"] = erfahrungspunkte;
     if (kultur !== undefined) update["allgemeines.kultur"] = kultur;
