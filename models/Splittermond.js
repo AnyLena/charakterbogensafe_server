@@ -557,14 +557,22 @@ const SplittermondSchema = new mongoose.Schema({
         default: 0,
         type: Number,
       },
-      schildKampffertigkeit: {
-        default: "–",
-        type: String,
+      schildBeh: {
+        default: 0,
+        type: Number,
       },
       schildMerkmale: {
         default: "–",
         type: String,
       },
+      schildFertigkeit: {
+        default: "–",
+        type: String,
+      },
+      schildAktiv: {
+        default: false,
+        type: Boolean
+      }
     },
   ],
   sprachen: {
