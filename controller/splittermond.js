@@ -376,6 +376,27 @@ export const deleteItem = async (req, res) => {
   }
 };
 
+export const activateItem = async (req, res) => {
+  const { charId, itemId, section, subsection, newValue } = req.body;
+  try {
+    const data = await Splittermond.updateOne(
+      { _id: charId, [`${section}._id`]: itemId },
+      {
+        $set: {
+          [`${section}.$[elem].${subsection}`]: newValue,
+        },
+      },
+      {
+        arrayFilters: [{ "elem._id": itemId }],
+        new: true,
+      }
+    );
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
 export const postMondzeichen = async (req, res) => {
   const { mondName, mondBeschreibung, mondVerstaerkt, mondGeheim } = req.body;
   try {
@@ -421,7 +442,7 @@ export const getMeisterschaften = async (req, res) => {
   try {
     const data = await Meisterschaft.find({
       gruppe,
-      fertigkeiten: fertigkeit
+      fertigkeiten: fertigkeit,
     });
     res.status(200).json(data);
   } catch (error) {

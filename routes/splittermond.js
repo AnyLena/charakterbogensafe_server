@@ -11,6 +11,7 @@ import {
   getMondzeichen,
   postMeisterschaft,
   getMeisterschaften,
+  activateItem,
 } from "../controller/splittermond.js";
 import { verifyToken } from "../middlewares/verifyToken.js";
 
@@ -24,11 +25,13 @@ splittermondRouter.put("/", updateSplittermond);
 
 splittermondRouter.put("/addItem", addItem);
 splittermondRouter.put("/deleteItem", deleteItem);
+splittermondRouter.put("/activateItem", activateItem);
 
 splittermondRouter.post("/mondzeichen", postMondzeichen);
 splittermondRouter.get("/mondzeichen/:id", getMondzeichen);
 
 splittermondRouter.post("/meisterschaft", postMeisterschaft);
 splittermondRouter.get("/meisterschaft/:gruppe/:fertigkeit", getMeisterschaften);
+
 
 export default splittermondRouter;
