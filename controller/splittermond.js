@@ -33,11 +33,12 @@ export const deleteSplittermond = async (req, res) => {
 };
 
 export const postSplittermond = async (req, res) => {
-  const { id, begleiter } = req.body;
+  const { id, begleiter, charName } = req.body;
   try {
     const data = await Splittermond.create({
       player: id,
       begleiter,
+      "allgemeines.name": charName
     });
     res.status(201).json(data);
   } catch (error) {
