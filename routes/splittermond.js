@@ -7,11 +7,12 @@ import {
   deleteSplittermond,
   addItem,
   deleteItem,
-  postMondzeichen,
+  // postMondzeichen,
   getMondzeichen,
   postMeisterschaft,
   getMeisterschaften,
   activateItem,
+  getMondzeichenName,
 } from "../controller/splittermond.js";
 import { verifyToken } from "../middlewares/verifyToken.js";
 
@@ -27,8 +28,9 @@ splittermondRouter.put("/addItem", addItem);
 splittermondRouter.put("/deleteItem", deleteItem);
 splittermondRouter.put("/activateItem", activateItem);
 
-splittermondRouter.post("/mondzeichen", postMondzeichen);
+// splittermondRouter.post("/mondzeichen", postMondzeichen);
 splittermondRouter.get("/mondzeichen/:id", getMondzeichen);
+splittermondRouter.get("/mondzeichen/name/:mondName", getMondzeichenName);
 
 splittermondRouter.post("/meisterschaft", postMeisterschaft);
 splittermondRouter.get("/meisterschaft/:gruppe/:fertigkeit", getMeisterschaften);

@@ -33,12 +33,30 @@ export const deleteSplittermond = async (req, res) => {
 };
 
 export const postSplittermond = async (req, res) => {
-  const { id, begleiter, charName } = req.body;
+  const { id, begleiter, newChar } = req.body;
   try {
     const data = await Splittermond.create({
       player: id,
       begleiter,
-      "allgemeines.name": charName
+      "allgemeines.name": newChar.newName,
+      "mondzeichen.mondID": newChar.mondID,
+      "attribute.groessenklasse": newChar.groessenklasse,
+      "attribute.ausstrahlung.basis": newChar.ausstrahlung,
+      "attribute.beweglichkeit.basis": newChar.beweglichkeit,
+      "attribute.intuition.basis": newChar.intuition,
+      "attribute.konstitution.basis": newChar.konstitution,
+      "attribute.mystik.basis": newChar.mystik,
+      "attribute.staerke.basis": newChar.staerke,
+      "attribute.verstand.basis": newChar.verstand,
+      "attribute.willenskraft.basis": newChar.willenskraft,
+      "attribute.ausstrahlung.aktuell": newChar.ausstrahlung,
+      "attribute.beweglichkeit.aktuell": newChar.beweglichkeit,
+      "attribute.intuition.aktuell": newChar.intuition,
+      "attribute.konstitution.aktuell": newChar.konstitution,
+      "attribute.mystik.aktuell": newChar.mystik,
+      "attribute.staerke.aktuell": newChar.staerke,
+      "attribute.verstand.aktuell": newChar.verstand,
+      "attribute.willenskraft.aktuell": newChar.willenskraft,
     });
     res.status(201).json(data);
   } catch (error) {
@@ -398,25 +416,35 @@ export const activateItem = async (req, res) => {
   }
 };
 
-export const postMondzeichen = async (req, res) => {
-  const { mondName, mondBeschreibung, mondVerstaerkt, mondGeheim } = req.body;
-  try {
-    const data = await Mondzeichen.create({
-      mondName,
-      mondBeschreibung,
-      mondVerstaerkt,
-      mondGeheim,
-    });
-    res.status(201).json(data);
-  } catch (error) {
-    res.status(500).send(`Internal server error (POST) ${error.message}`);
-  }
-};
+// export const postMondzeichen = async (req, res) => {
+//   const { mondName, mondBeschreibung, mondVerstaerkt, mondGeheim } = req.body;
+//   try {
+//     const data = await Mondzeichen.create({
+//       mondName,
+//       mondBeschreibung,
+//       mondVerstaerkt,
+//       mondGeheim,
+//     });
+//     res.status(201).json(data);
+//   } catch (error) {
+//     res.status(500).send(`Internal server error (POST) ${error.message}`);
+//   }
+// };
 
 export const getMondzeichen = async (req, res) => {
   const { id } = req.params;
   try {
     const data = await Mondzeichen.findById(id);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+export const getMondzeichenName = async (req, res) => {
+  const { mondName } = req.params;
+  try {
+    const data = await Mondzeichen.findOne({mondName});
     res.status(200).json(data);
   } catch (error) {
     res.status(500).send(error.message);
