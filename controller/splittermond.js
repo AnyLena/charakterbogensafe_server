@@ -74,6 +74,7 @@ export const updateSplittermond = async (req, res) => {
         kultur,
         abstammung,
         rasse,
+        geschlecht,
         geburtsort,
         schwaechen,
         erscheinung,
@@ -183,6 +184,7 @@ export const updateSplittermond = async (req, res) => {
     if (abstammung !== undefined) update["allgemeines.abstammung"] = abstammung;
     if (ausbildung !== undefined) update["allgemeines.ausbildung"] = ausbildung;
     if (geburtsort !== undefined) update["allgemeines.geburtsort"] = geburtsort;
+    if (geschlecht !== undefined) update["allgemeines.geschlecht"] = geschlecht;
     if (rasse !== undefined) update["allgemeines.rasse"] = rasse;
     if (geburtsort !== undefined)
       update["allgemeines.klassenbonus"] = geburtsort;
